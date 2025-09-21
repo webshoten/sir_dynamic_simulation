@@ -1,0 +1,43 @@
+<style>
+  body { margin: 0; }
+  #hud-panel {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    font: 12px/1.4 sans-serif;
+    z-index: 10;
+  }
+  #hud-panel label { display: inline-block; width: 110px; }
+  #hud-panel input { width: 80px; }
+  #hud-panel .row { margin: 4px 0; white-space: nowrap; }
+  #apply-btn { margin-top: 6px; width: 100%; }
+  canvas { display: block; }
+  #chart-wrap { position: fixed; right: 8px; bottom: 8px; z-index: 5; }
+  #chart { background: rgba(0,0,0,0.5); border-radius: 6px; }
+  @media (max-width: 640px) {
+    #hud-panel { right: 4px; left: 4px; }
+    #hud-panel label { width: 90px; }
+  }
+  
+</style>
+<div id="hud-panel">
+  <div class="row"><label for="popN">人口 N</label><input id="popN" type="number" min="1" max="2000" step="1"></div>
+  <div class="row"><label for="beta">感染率 β</label><input id="beta" type="number" min="0" max="5" step="0.01"></div>
+  <div class="row"><label for="gamma">回復率 γ</label><input id="gamma" type="number" min="0" max="5" step="0.01"></div>
+  <div class="row"><label for="initI">初期感染者数</label><input id="initI" type="number" min="0" max="2000" step="1"></div>
+  <div class="row"><label for="fatality">致死率</label><input id="fatality" type="number" min="0" max="1" step="0.001"></div>
+  <button id="apply-btn">適用</button>
+  <div style="margin-top:4px;opacity:.8">数値を変更して「適用」を押してください</div>
+</div>
+<canvas></canvas>
+<div id="chart-wrap">
+  <canvas id="chart" width="480" height="160"></canvas>
+  <div id="metrics" style="color:#000;font:11px sans-serif;opacity:.9; text-align:right;">
+    S/I/R 時系列
+  </div>
+</div>
+<script src="./index.js"></script>
